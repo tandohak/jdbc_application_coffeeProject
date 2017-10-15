@@ -4,8 +4,6 @@ public class ProductCode {
 	private String producCode;
 	private String producName;
 	
-	
-	
 	public ProductCode(String producCode) {
 		this.producCode = producCode;
 	}

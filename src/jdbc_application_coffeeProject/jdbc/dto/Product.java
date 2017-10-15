@@ -15,9 +15,9 @@ public class Product {
 	public Product(ProductCode proCode, int price, int sale, int margin) {
 		super();
 		this.proCode = proCode;
-		this.price = price;
-		this.sale = sale;
-		this.margin = margin;
+		this.price = price;		//가격
+		this.sale = sale;		//판매량
+		this.margin = margin;	//마진
 	}
 	
 	public ProductCode getProCode() {
