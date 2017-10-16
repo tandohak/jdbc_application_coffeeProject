@@ -1,6 +1,6 @@
-package jdbc_application_coffeeProject.jdbc.dto;
+package jdbc_application_coffeeProject.dto;
 
-public class CoffeReportRank {
+public class CoffeeReportRank {
 	private int rank;
 	private ProductCode proCode;
 	private String proName;
@@ -10,8 +10,8 @@ public class CoffeReportRank {
 	private int surtax;
 	private int supply;
 	private int marginPrice;
-	
-	public CoffeReportRank(int rank, ProductCode proCode, String proName, int price, int sale, int priceSum,
+
+	public CoffeeReportRank(int rank, ProductCode proCode, String proName, int price, int sale, int priceSum,
 			int surtax, int supply, int marginPrice) {
 		this.rank = rank;
 		this.proCode = proCode;

@@ -1,4 +1,4 @@
-package jdbc_application_coffeeProject.jdbc.dto;
+package jdbc_application_coffeeProject.dto;
 
 public class Product {
 	private ProductCode proCode;
