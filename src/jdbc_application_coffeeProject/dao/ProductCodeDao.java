@@ -69,7 +69,7 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 		
 		return productCode;
 	}
-
+	
 	@Override
 	public List<ProductCode> selectItemByAll() throws SQLException {
 		String sql = "SELECT * FROM productCode";
@@ -88,5 +88,7 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 	private ProductCode getProductCode(ResultSet rs) throws SQLException {
 		return new ProductCode(rs.getString(1), rs.getString(2));
 	}
+
+	
 	
 }

@@ -94,6 +94,17 @@ public class CoffeeReportRank {
 
 	public void setMarginPrice(int marginPrice) {
 		this.marginPrice = marginPrice;
+	}
+
+	public Object[] toArray(){
+		return new Object[]{rank, proCode.getProducCode(), proName, price, sale, priceSum, surtax, supply, marginPrice};
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(
+				"%s,%s,%s, %s,%s, %s, %s, %s, %s",
+				rank, proCode.getProducCode(), proName, price, sale, priceSum, surtax, supply, marginPrice);
 	}	
 
 	
