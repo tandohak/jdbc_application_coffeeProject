@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 public class MaringRankFrame extends JFrame {
 
 	private JPanel contentPane;
+	private CoffeeReportRankList pRank;
 
 	public MaringRankFrame() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -28,8 +29,16 @@ public class MaringRankFrame extends JFrame {
 		JLabel label = new JLabel("마 진 액 순 위");
 		panel.add(label);
 		
-		CoffeeReportRankList panel_1 = new CoffeeReportRankList(false);
-		contentPane.add(panel_1, BorderLayout.CENTER);
+		pRank = new CoffeeReportRankList(true);
+		contentPane.add(pRank, BorderLayout.CENTER);
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.SOUTH);
+		
+		
 	}
-
+	
+	public void loadData(){
+		pRank.loadData(true);
+	}
 }

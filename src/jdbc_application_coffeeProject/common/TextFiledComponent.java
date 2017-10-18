@@ -1,6 +1,8 @@
 package jdbc_application_coffeeProject.common;
 
 import java.awt.GridLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,6 +44,11 @@ public class TextFiledComponent extends JPanel {
 		}
 	}
 
-	
+	public void confirmItem(Matcher m,int length) throws Exception{
+		if(!m.find()){
+			textField.requestFocus();
+			throw new Exception(length + "자리 이내의 정수로 입력하세요.");
+		}
+	}
 
 }

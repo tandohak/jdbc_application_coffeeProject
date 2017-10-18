@@ -6,45 +6,45 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbc_application_coffeeProject.dto.CoffeeReport;
 import jdbc_application_coffeeProject.dto.CoffeeReportRank;
 import jdbc_application_coffeeProject.dto.ProductCode;
 import jdbc_application_coffeeProject.jdbc.DBCon;
 
 public class CoffeeReportRankDao implements SqlDao<CoffeeReportRank> {
 	private static final CoffeeReportRankDao instance = new CoffeeReportRankDao();
-	
-	private CoffeeReportRankDao() {}
-	
+
+	private CoffeeReportRankDao() {
+	}
+
 	public static CoffeeReportRankDao getInstance() {
 		return instance;
 	}
 
-
+	@Override
+	public void insertItem(CoffeeReportRank item) throws SQLException {
+	}
 
 	@Override
-	public void insertItem(CoffeeReportRank item) throws SQLException {}
+	public void updateItem(CoffeeReportRank item) throws SQLException {
+	}
 
 	@Override
-	public void updateItem(CoffeeReportRank item) throws SQLException {}
-
-	@Override
-	public void deleteItem(CoffeeReportRank item) throws SQLException {}
+	public void deleteItem(CoffeeReportRank item) throws SQLException {
+	}
 
 	@Override
 	public List<CoffeeReportRank> selectItemByAll() throws SQLException {
 		return null;
 	}
-	
+
 	@Override
 	public CoffeeReportRank selectItemByNo(CoffeeReportRank item) throws SQLException {
 		return null;
 	}
-	
 
 	public List<CoffeeReportRank> selectItemByAll(boolean isType) throws SQLException {
-		// isType true면 마진액순 정렬 
-		//        false면 총판매액 순 정렬
+		// isType true면 마진액순 정렬
+		// false면 총판매액 순 정렬
 		String sql = "SELECT * FROM " + getTableName(isType);
 		List<CoffeeReportRank> lists = new ArrayList<>();
 
@@ -80,31 +80,36 @@ public class CoffeeReportRankDao implements SqlDao<CoffeeReportRank> {
 	private String getTableName(boolean isType) {
 		String tableName;
 		if (isType) {
-			tableName = "CoffeeReport_ranked_marginprice";
+			tableName = "coffee_rank_marginPrice_AllSum";
 		} else {
-			tableName = "CoffeeReport_ranked_pricesum";
+			tableName = "coffee_rank_priceSum_AllSum";
 		}
 		return tableName;
 	}
 
-
-	
 	private CoffeeReportRank getCoffeeReportRank(ResultSet rs) throws SQLException {
-		int rank = rs.getInt("rank");
+		String rank = rs.getString("rank");
+
+		if (rs.getString("rank").equals("합계")) {
+			ProductCode proCode = new ProductCode(rs.getString("proCode"));
+			String priceSum = String.format("%,d", rs.getInt("priceSum"));
+			String surtax = String.format("%,d", rs.getInt("surtax"));
+			String supply = String.format("%,d", rs.getInt("supply"));
+			String marginPrice = String.format("%,d", rs.getInt("marginPrice"));
+			return new CoffeeReportRank(rank, proCode, "", "", "", priceSum, surtax, supply, "", marginPrice);
+		}
+
 		ProductCode proCode = new ProductCode(rs.getString("proCode"));
 		String proName = rs.getString("producName");
-		int price = rs.getInt("price");
-		int sale = rs.getInt("sale");
-		int priceSum = rs.getInt("priceSum");
-		int surtax = rs.getInt("surtax");
-		int supply = rs.getInt("supply");
-		int marginPrice = rs.getInt("marginPrice");
+		String price = String.format("%,d", rs.getInt("price"));
+		String sale = String.format("%,d", rs.getInt("sale"));
+		String priceSum = String.format("%,d", rs.getInt("priceSum"));
+		String surtax = String.format("%,d", rs.getInt("surtax"));
+		String supply = String.format("%,d", rs.getInt("supply"));
+		String margin = String.format("%,d", rs.getInt("margin"));
+		String marginPrice = String.format("%,d", rs.getInt("marginPrice"));
 
-		return new CoffeeReportRank(rank, proCode, proName, price, sale, priceSum, surtax, supply, marginPrice);
+		return new CoffeeReportRank(rank, proCode, proName, price, sale, priceSum, surtax, supply, margin, marginPrice);
 	}
-	
-	
-
-	
 
 }

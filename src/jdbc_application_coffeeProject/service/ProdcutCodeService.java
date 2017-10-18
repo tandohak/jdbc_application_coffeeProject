@@ -12,7 +12,7 @@ import jdbc_application_coffeeProject.dto.ProductCode;
 public class ProdcutCodeService {
 	private SqlDao<ProductCode> proCodeDao;
 
-	private ProdcutCodeService() {
+	public ProdcutCodeService() {
 		proCodeDao = ProductCodeDao.getIntance();
 	}
 	
@@ -56,7 +56,7 @@ public class ProdcutCodeService {
 		return null;
 	}
 	
-	public List<ProductCode> selectContentByNo(){
+	public List<ProductCode> selectContentByAll(){
 		try {
 			return proCodeDao.selectItemByAll();
 		} catch (SQLException e) {
