@@ -28,7 +28,7 @@ public class ProductCode {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s", producCode, producName);
+		return String.format("%s(%s)",  producName,producCode);
 	}	
 	
 	
