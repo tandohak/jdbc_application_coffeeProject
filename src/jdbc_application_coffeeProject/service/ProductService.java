@@ -11,7 +11,7 @@ import jdbc_application_coffeeProject.dto.Product;
 public class ProductService {
 	private SqlDao<Product> producDao;
 
-	private ProductService() {
+	public ProductService() {
 		producDao = ProductDao.getInstance();
 	}
 	

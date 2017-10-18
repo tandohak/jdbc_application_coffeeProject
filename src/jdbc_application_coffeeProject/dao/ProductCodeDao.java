@@ -20,7 +20,7 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 
 	@Override
 	public void insertItem(ProductCode item) throws SQLException {
-		String sql = "insert into productCode value( ? , ?)";
+		String sql = "insert into productcode values( ? , ?)";
 		
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql)){
 			pstmt.setString(1, item.getProducCode());
@@ -32,7 +32,7 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 
 	@Override
 	public void updateItem(ProductCode item) throws SQLException {
-		String sql = "UPDATE productCode SET producName = ? WHERE producCode = ? ";
+		String sql = "UPDATE productcode SET producName = ? WHERE producCode = ? ";
 		
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql)){
 			pstmt.setString(1, item.getProducName());

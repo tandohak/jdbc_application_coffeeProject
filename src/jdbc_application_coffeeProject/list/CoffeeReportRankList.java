@@ -29,7 +29,7 @@ public class CoffeeReportRankList extends JPanel {
 	}
 
 	private String[] getColumnNames() {
-		return new String[]{"순위","제품코드","제품명","제품단가","판매수량","공급가액","부가세액","판매금액","마진율","마진액"};
+		return new String[]{"순위","제품코드","제품명","제품단가","판매수량","판매금액","부가세액","공급가액","마진율","마진액"};
 	}
 
 	private Object[][] getDatas(boolean isType) {
@@ -42,6 +42,11 @@ public class CoffeeReportRankList extends JPanel {
 		
 		return data;
 	}	
+	
+	public void loadData(boolean isType) {
+		DefaultTableModel model = new DefaultTableModel(getDatas(isType), getColumnNames());
+		table.setModel(model);
+	}
 	
 	
 

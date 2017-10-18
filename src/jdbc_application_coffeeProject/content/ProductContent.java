@@ -1,29 +1,39 @@
 package jdbc_application_coffeeProject.content;
 
 import java.awt.GridLayout;
+import java.util.List;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JPanel;
 
+import jdbc_application_coffeeProject.common.ComboBoxComponent;
 import jdbc_application_coffeeProject.common.TextFiledComponent;
 import jdbc_application_coffeeProject.dto.Product;
 import jdbc_application_coffeeProject.dto.ProductCode;
+import jdbc_application_coffeeProject.service.ProdcutCodeService;
 
 public class ProductContent extends JPanel {
-
-	private TextFiledComponent pProCode;
 	private TextFiledComponent pProName;
 	private TextFiledComponent pPrice;
 	private TextFiledComponent pSale;
 	private TextFiledComponent pMargin;
-
+	private ProdcutCodeService proCodeService;
+	private ComboBoxComponent<ProductCode> pProCode;
+	
 	public ProductContent() {
+		proCodeService = new ProdcutCodeService();
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		pProCode = new TextFiledComponent("제품코드");
+		pProCode = new ComboBoxComponent("제품코드");
 		add(pProCode);
 		
-		pProName = new TextFiledComponent("제품명");
-		add(pProName);
+		ComboBoxModel<ProductCode> model;
+		List<ProductCode> lists = proCodeService.selectContentByAll();
+		Vector<ProductCode> item = new Vector<>(lists);
+		pProCode.setComboBoxModel(item);
 		
 		pPrice = new TextFiledComponent("제품단가");
 		add(pPrice);
@@ -33,10 +43,14 @@ public class ProductContent extends JPanel {
 		
 		pMargin = new TextFiledComponent("마진율");
 		add(pMargin);
+		
+		
 	}
 	
+	
+	
 	public Product getContent(){
-		ProductCode proCode = new ProductCode(pProCode.getTextValue());
+		ProductCode proCode = pProCode.getSelectedItem();
 		int price = Integer.parseInt(pPrice.getTextValue());
 		int sale = Integer.parseInt(pSale.getTextValue());
 		int margin = Integer.parseInt(pMargin.getTextValue());
@@ -44,14 +58,14 @@ public class ProductContent extends JPanel {
 	}
 	
 	public void setContent(Product item){
-		pProCode.setTextValue(item.getProCode().getProducCode());
+		pProCode.setSelectedItem(item.getProCode());
 		pPrice.setTextValue(item.getPrice() + "");
 		pSale.setTextValue(item.getSale() + "");
 		pMargin.setTextValue(item.getMargin() + "");
 	}
 	
 	public void clear(){
-		pProCode.setTextValue("");
+		pProCode.setSelectedIndex(0);
 		pPrice.setTextValue("");
 		pSale.setTextValue("");
 		pMargin.setTextValue("");
@@ -62,6 +76,21 @@ public class ProductContent extends JPanel {
 		pPrice.isEmptyCheck();
 		pSale.isEmptyCheck();
 		pMargin.isEmptyCheck();
+	}
+	
+	public void confirmItem() throws Exception{
+		
+		Pattern p = Pattern.compile("^[0-9]{1,8}$");
+		Matcher m = p.matcher(pPrice.getTextValue());
+		
+		pPrice.confirmItem(m,8);
+		
+		m = p.matcher(pSale.getTextValue());
+		pSale.confirmItem(m,8);		
+		
+		p = Pattern.compile("^[0-9]{1,2}$");
+		m = p.matcher(pMargin.getTextValue());
+		pMargin.confirmItem(m,2);		
 	}
 
 }

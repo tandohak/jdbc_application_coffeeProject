@@ -1,18 +1,20 @@
 package jdbc_application_coffeeProject.dto;
 
 public class CoffeeReportRank {
-	private int rank;
+	private String rank;
 	private ProductCode proCode;
 	private String proName;
-	private int price;
-	private int sale;
-	private int priceSum;
-	private int surtax;
-	private int supply;
-	private int marginPrice;
+	private String price;
+	private String sale;
+	private String priceSum;
+	private String surtax;
+	private String supply;
+	private String margin;
+	private String marginPrice;
 
-	public CoffeeReportRank(int rank, ProductCode proCode, String proName, int price, int sale, int priceSum,
-			int surtax, int supply, int marginPrice) {
+	
+	public CoffeeReportRank(String rank, ProductCode proCode, String proName, String price, String sale,
+			String priceSum, String surtax, String supply, String margin, String marginPrice) {
 		this.rank = rank;
 		this.proCode = proCode;
 		this.proName = proName;
@@ -21,90 +23,141 @@ public class CoffeeReportRank {
 		this.priceSum = priceSum;
 		this.surtax = surtax;
 		this.supply = supply;
+		this.margin = margin;
 		this.marginPrice = marginPrice;
 	}
 
-	public int getRank() {
+	
+	
+	public final String getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+
+
+	public final void setRank(String rank) {
 		this.rank = rank;
 	}
 
-	public ProductCode getProCode() {
+
+
+	public final ProductCode getProCode() {
 		return proCode;
 	}
 
-	public void setProCode(ProductCode proCode) {
+
+
+	public final void setProCode(ProductCode proCode) {
 		this.proCode = proCode;
 	}
 
-	public String getProName() {
+
+
+	public final String getProName() {
 		return proName;
 	}
 
-	public void setProName(String proName) {
+
+
+	public final void setProName(String proName) {
 		this.proName = proName;
 	}
 
-	public int getPrice() {
+
+
+	public final String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+
+
+	public final void setPrice(String price) {
 		this.price = price;
 	}
 
-	public int getSale() {
+
+
+	public final String getSale() {
 		return sale;
 	}
 
-	public void setSale(int sale) {
+
+
+	public final void setSale(String sale) {
 		this.sale = sale;
 	}
 
-	public int getPriceSum() {
+
+
+	public final String getPriceSum() {
 		return priceSum;
 	}
 
-	public void setPriceSum(int priceSum) {
+
+
+	public final void setPriceSum(String priceSum) {
 		this.priceSum = priceSum;
 	}
 
-	public int getSurtax() {
+
+
+	public final String getSurtax() {
 		return surtax;
 	}
 
-	public void setSurtax(int surtax) {
+
+
+	public final void setSurtax(String surtax) {
 		this.surtax = surtax;
 	}
 
-	public int getSupply() {
+
+
+	public final String getSupply() {
 		return supply;
 	}
 
-	public void setSupply(int supply) {
+
+
+	public final void setSupply(String supply) {
 		this.supply = supply;
 	}
 
-	public int getMarginPrice() {
+
+
+	public final String getMargin() {
+		return margin;
+	}
+
+
+
+	public final void setMargin(String margin) {
+		this.margin = margin;
+	}
+
+
+
+	public final String getMarginPrice() {
 		return marginPrice;
 	}
 
-	public void setMarginPrice(int marginPrice) {
+
+
+	public final void setMarginPrice(String marginPrice) {
 		this.marginPrice = marginPrice;
 	}
 
+
+
 	public Object[] toArray(){
-		return new Object[]{rank, proCode.getProducCode(), proName, price, sale, priceSum, surtax, supply, marginPrice};
+		return new Object[]{rank, proCode.getProducCode(), proName, price, sale, priceSum, surtax, supply, margin, marginPrice};
 	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"%s,%s,%s, %s,%s, %s, %s, %s, %s",
-				rank, proCode.getProducCode(), proName, price, sale, priceSum, surtax, supply, marginPrice);
+				"%s,%s,%s, %s,%s, %s, %s, %s, %s %s",
+				rank, proCode.getProducCode(), proName, price, sale, priceSum, surtax, supply,margin, marginPrice);
 	}	
 
 	
