@@ -89,7 +89,6 @@ public class CoffeeViewJF extends JFrame implements ActionListener {
 				pTextField.isEmptyCheck();
 				pTextField.confirmItem();
 				pTextField.requestFocus();
-				
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage());
 				return;
