@@ -92,7 +92,6 @@ public class CoffeeViewJF extends JFrame implements ActionListener {
 				
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage());
-				e1.printStackTrace();
 				return;
 			}
 			

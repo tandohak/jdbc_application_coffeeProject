@@ -79,8 +79,7 @@ public class ProductContent extends JPanel {
 	}
 	
 	public void confirmItem() throws Exception{
-		
-		Pattern p = Pattern.compile("^[0-9]{1,8}$");
+		Pattern p = Pattern.compile("^[1-9][0-9]?{1,7}$");
 		Matcher m = p.matcher(pPrice.getTextValue());
 		
 		pPrice.confirmItem(m,8);
@@ -88,7 +87,7 @@ public class ProductContent extends JPanel {
 		m = p.matcher(pSale.getTextValue());
 		pSale.confirmItem(m,8);		
 		
-		p = Pattern.compile("^[0-9]{1,2}$");
+		p = Pattern.compile("^[1-9][0-9]?{1,1}$");
 		m = p.matcher(pMargin.getTextValue());
 		pMargin.confirmItem(m,2);		
 	}
