@@ -15,7 +15,7 @@ import jdbc_application_coffeeProject.dto.Product;
 import jdbc_application_coffeeProject.dto.ProductCode;
 import jdbc_application_coffeeProject.service.ProdcutCodeService;
 
-public class ProductContent extends JPanel {
+public class ProductContent extends AbstractContent<Product>{
 	private TextFiledComponent pProName;
 	private TextFiledComponent pPrice;
 	private TextFiledComponent pSale;
