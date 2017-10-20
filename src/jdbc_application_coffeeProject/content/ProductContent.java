@@ -89,5 +89,4 @@ public class ProductContent extends JPanel {
 		m = p.matcher(pMargin.getTextValue());
 		pMargin.confirmItem(m,2);		
 	}
-
 }
