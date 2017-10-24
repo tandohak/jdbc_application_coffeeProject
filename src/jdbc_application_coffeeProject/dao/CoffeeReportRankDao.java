@@ -46,6 +46,9 @@ public class CoffeeReportRankDao implements SqlDao<CoffeeReportRank> {
 		// isType true면 마진액순 정렬
 		// false면 총판매액 순 정렬
 		String sql = "SELECT * FROM " + getTableName(isType);
+			   sql += " union ";
+		       sql += "select '합계','','','','',sum(priceSum),sum(surtax),sum(supply),'',sum(marginPrice) from coffeereport";
+		       sql += " order by rank";
 		List<CoffeeReportRank> lists = new ArrayList<>();
 
 		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
@@ -60,6 +63,7 @@ public class CoffeeReportRankDao implements SqlDao<CoffeeReportRank> {
 
 	public CoffeeReportRank selectItemByNo(ProductCode item, boolean isType) throws SQLException {
 		String sql = "SELECT * FROM " + getTableName(isType) + " WHERE proCode = ?";
+			  
 
 		CoffeeReportRank coffeeReportRank = null;
 

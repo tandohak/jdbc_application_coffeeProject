@@ -31,5 +31,9 @@ public class ProductCode {
 		return String.format("%s(%s)",  producName,producCode);
 	}	
 	
+	public Object[] toArray(){
+		return new Object[]{producCode,producName};
+	}
+	
 	
 }

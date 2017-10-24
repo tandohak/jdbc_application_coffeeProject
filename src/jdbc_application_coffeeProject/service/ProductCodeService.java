@@ -9,10 +9,10 @@ import jdbc_application_coffeeProject.dao.ProductCodeDao;
 import jdbc_application_coffeeProject.dao.SqlDao;
 import jdbc_application_coffeeProject.dto.ProductCode;
 
-public class ProdcutCodeService {
+public class ProductCodeService {
 	private SqlDao<ProductCode> proCodeDao;
 
-	public ProdcutCodeService() {
+	public ProductCodeService() {
 		proCodeDao = ProductCodeDao.getIntance();
 	}
 	

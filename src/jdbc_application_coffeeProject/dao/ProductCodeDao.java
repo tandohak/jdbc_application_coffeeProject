@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jdbc_application_coffeeProject.dto.ProductCode;
 import jdbc_application_coffeeProject.jdbc.DBCon;
@@ -33,7 +35,7 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 	@Override
 	public void updateItem(ProductCode item) throws SQLException {
 		String sql = "UPDATE productcode SET producName = ? WHERE producCode = ? ";
-		
+	
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql)){
 			pstmt.setString(1, item.getProducName());
 			pstmt.setString(2, item.getProducCode());
@@ -47,12 +49,13 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 		
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql)){
 			pstmt.setString(1, item.getProducCode());
+			pstmt.executeUpdate();
 		}
 	}
 
 	@Override
 	public ProductCode selectItemByNo(ProductCode item) throws SQLException {
-		String sql = "SELECT * FROM productCode WHERE productCode = ?";
+		String sql = "SELECT * FROM productCode WHERE producCode = ?";
 		ProductCode productCode = null;
 		
 		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql)){
@@ -61,6 +64,7 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 			try(ResultSet rs = pstmt.executeQuery()){
 				if(rs.next()){
 					productCode = getProductCode(rs);
+					
 				}
 			}
 			
@@ -88,6 +92,8 @@ public class ProductCodeDao implements SqlDao<ProductCode> {
 	private ProductCode getProductCode(ResultSet rs) throws SQLException {
 		return new ProductCode(rs.getString(1), rs.getString(2));
 	}
+
+	
 
 	
 	

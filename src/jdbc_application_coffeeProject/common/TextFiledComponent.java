@@ -25,7 +25,7 @@ public class TextFiledComponent extends JPanel {
 		textField.setColumns(10);
 	}
 	
-	public String getTextValue(){		
+	public String getTextValue(){	
 		return textField.getText();
 	}
 	
@@ -44,10 +44,10 @@ public class TextFiledComponent extends JPanel {
 		}
 	}
 
-	public void confirmItem(Matcher m,int length) throws Exception{
+	public void confirmItem(Matcher m,String msg) throws Exception{
 		if(!m.find()){
 			textField.requestFocus();
-			throw new Exception(length + "자리 이내의 정수로 입력하세요.");
+			throw new Exception(msg);
 		}
 	}
 
